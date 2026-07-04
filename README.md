@@ -1,2 +1,16 @@
-# PROYECT-Flux-PROGRAMMING-EMILIO-CASTILLO-Q2-2026
-Flux is an intelligent academic task management system that helps students optimize their workflow. By utilizing custom priority levels, automated validation, and adaptive notifications, Flux ensures critical deadlines are met. It provides clear insights through detailed productivity reports.
+# Flux: Productivity Intelligence
+
+Flux is an intelligent academic task management system designed to optimize student workflows through custom priority levels, automated validation, and adaptive notifications.
+
+## Project Structure
+- `main.py`: Core logic of the Flux system.
+- `assets/`: Contains visual documentation (flowchart).
+- `docs/`: Technical specifications and pseudocode.
+
+## System Documentation
+- [View Flowchart](assets/flux_flowchart.png)
+- [View Pseudocode](docs/pseudocode.md)
+
+## How to run
+1. Clone the repository.
+2. Run the main script: `python main.py`s.
