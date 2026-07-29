@@ -4,7 +4,7 @@ Flux is an intelligent academic task management system designed to optimize stud
 
 ## Project Structure
 - `main.py`: Core logic of the Flux system.
-- `assets/`: Contains visual documentation (flowchart).
+![alt text](image.png)- `assets/`: Contains visual documentation (flowchart).
 - `docs/`: Technical specifications and pseudocode.
 
 ## System Documentation
