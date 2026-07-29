@@ -1,2 +1,6 @@
 2026-07-09 19:28:26 — [INFO] --- PRUEBA: El sistema está escribiendo logs correctamente ---
 2026-07-09 19:28:26 — [INFO] Flux application started.
+2026-07-09 19:54:41 — [INFO] --- PRUEBA: El sistema está escribiendo logs correctamente ---
+2026-07-09 19:54:41 — [INFO] Flux application started.
+2026-07-09 19:54:55 — [INFO] Task registered: TAREAA | Priority: baja
+2026-07-09 19:54:55 — [INFO] Task processed and output displayed successfully.

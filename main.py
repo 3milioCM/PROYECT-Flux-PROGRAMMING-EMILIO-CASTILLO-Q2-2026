@@ -20,45 +20,95 @@ logging.basicConfig(
 )
 
 def main():
-    # Línea de prueba para forzar escritura
-    logging.info("--- PRUEBA: El sistema está escribiendo logs correctamente ---")
-    print("--- Flux: Productivity Intelligence ---")
-    # ... resto de tu código ...
     logging.info("Flux application started.")
-    print("--- Flux: Productivity Intelligence ---")
+    print("\n" + "="*40)
+    print("   FLUX: PRODUCTIVITY INTELLIGENCE")
+    print("="*40)
+    
+    tasks_list = []
     
     try:
-        # Input
-        task_name = input("Nombre de la tarea: ")
-        task_duration = float(input("Duración (minutos): "))
-        priority = input("Prioridad (alta/media/baja): ").lower()
-        
-        logging.info(f"Task registered: {task_name} | Priority: {priority}")
-        
-        # Process
-        if priority == "alta":
-            alarm_volume = 100
-            alert_color = "Red"
-        else:
-            alarm_volume = 50
-            alert_color = "Yellow"
+        # Permitir registrar múltiples tareas en una sesión
+        while True:
+            print("\n--- Registrar Nueva Tarea ---")
+            task_name = input("Nombre de la tarea (o escribe 'salir' para terminar): ").strip()
             
-        # Output
-        print("\n--- Resumen de la Tarea ---")
-        print(f"Tarea: {task_name}")
-        print(f"Volumen de alarma: {alarm_volume}")
-        print(f"Color de alerta: {alert_color}")
-        print("Estado: Registrada exitosamente en Flux.")
+            if task_name.lower() == 'salir':
+                break
+                
+            if not task_name:
+                print("El nombre de la tarea no puede estar vacío.")
+                continue
+                
+            task_duration = float(input("Duración (minutos): "))
+            
+            print("Niveles de prioridad: alta, media, baja")
+            priority = input("Prioridad: ").lower().strip()
+            
+            if priority not in ["alta", "media", "baja"]:
+                print("Prioridad no válida. Se asignará 'media' por defecto.")
+                priority = "media"
+            
+            # Lógica del motor de alertas de Flux
+            if priority == "alta":
+                alarm_volume = 100
+                alert_color = "Red"
+            elif priority == "media":
+                alarm_volume = 60
+                alert_color = "Yellow"
+            else: # baja
+                alarm_volume = 30
+                alert_color = "Green"
+                
+            # Guardar la tarea en la lista de la sesión
+            task_data = {
+                "name": task_name,
+                "duration": task_duration,
+                "priority": priority,
+                "volume": alarm_volume,
+                "color": alert_color
+            }
+            tasks_list.append(task_data)
+            
+            logging.info(f"Task registered: {task_name} | Duration: {task_duration}m | Priority: {priority} | Volume: {alarm_volume} | Color: {alert_color}")
+            
+            print(f"\n[Éxito] Tarea '{task_name}' registrada correctamente en Flux.")
+            
+            continuar = input("\n¿Deseas agregar otra tarea? (s/n): ").lower()
+            if continuar != 's':
+                break
+
+        # Panel de Resumen Final (Simulando la vista de estadísticas de la app)
+        print("\n" + "="*40)
+        print("         RESUMEN DE PRODUCTIVIDAD")
+        print("="*40)
+        print(f"Total de tareas registradas: {len(tasks_list)}")
         
-        logging.info("Task processed and output displayed successfully.")
+        high_priority_count = sum(1 for t in tasks_list if t['priority'] == 'alta')
+        print(f"Tareas de alta prioridad: {high_priority_count}")
+        print("-" * 40)
+        
+        for i, t in enumerate(tasks_list, 1):
+            print(f"\n[Tarea {i}]")
+            print(f"  • Nombre: {t['name']}")
+            print(f"  • Duración: {t['duration']} min")
+            print(f"  • Prioridad: {t['priority'].upper()}")
+            print(f"  • Volumen de Alarma: {t['volume']}")
+            print(f"  • Color de Alerta: {t['color']}")
+            
+        print("\n" + "="*40)
+        print("Estado: Sesión finalizada y guardada exitosamente en logs.")
+        print("="*40)
+        
+        logging.info(f"Session ended. Total tasks processed: {len(tasks_list)}")
 
     except ValueError:
-        error_msg = "Invalid input: duration must be a number."
+        error_msg = "Invalid input: duration must be a valid number."
         logging.error(error_msg)
-        print(f"Error: {error_msg}")
+        print(f"\n[Error]: {error_msg}")
     except Exception as e:
         logging.error(f"Unexpected error: {e}")
-        print(f"An unexpected error occurred: {e}")
+        print(f"\n[Error inesperado]: {e}")
 
 if __name__ == "__main__":
     main()
